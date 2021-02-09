@@ -19,3 +19,12 @@ if __name__ == '__main__':
     # 2: de forma crescente ou descrescente
 
     display(tabela_faturamento)
+
+    tabela_quantidade_venda = tabela_vendas[["ID Loja", "Quantidade"]].groupby("ID Loja").sum()
+    # pegamos cada loja, agora queremos ver a quantidade de produtos vendido em cada uma delas
+
+    tabela_quantidade_venda = tabela_quantidade_venda.sort_values(by="Quantidade")
+    display(tabela_quantidade_venda)
+
+
+
