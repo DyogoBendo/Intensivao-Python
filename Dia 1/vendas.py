@@ -10,7 +10,7 @@ def enviar_email(nome_loja, tabela):
     corpo_email = f"""
     <p> Prezados, </p>
     <p> Segue relatório de vendas </p>
-    {tabela}
+    {tabela.to_html()}  # convertendo tabela em html
     <p> Qualquer dúvida estou a disposição</p>
     """
 
@@ -63,7 +63,15 @@ if __name__ == '__main__':
     ticket_medio = ticket_medio.to_frame()
     # convertemos o ticket medio em uma tabela
 
+    ticket_medio = ticket_medio.rename(columns={0: "Ticket Medio"})  # renomeado a coluna com nome 0
+
+    tabela_completa = tabela_faturamento.join(tabela_quantidade_venda).join(ticket_medio)
+    # juntamos todas as tabelas
+
+    display(tabela_completa)
+
     enviar_email("Diretoria", tabela_faturamento)
+
 
 
 
