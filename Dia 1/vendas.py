@@ -18,13 +18,16 @@ if __name__ == '__main__':
     # 1: qual coluna
     # 2: de forma crescente ou descrescente
 
-    display(tabela_faturamento)
-
     tabela_quantidade_venda = tabela_vendas[["ID Loja", "Quantidade"]].groupby("ID Loja").sum()
     # pegamos cada loja, agora queremos ver a quantidade de produtos vendido em cada uma delas
 
     tabela_quantidade_venda = tabela_quantidade_venda.sort_values(by="Quantidade")
-    display(tabela_quantidade_venda)
 
+    ticket_medio = tabela_faturamento["Valor Final"] / tabela_quantidade_venda["Quantidade"]
+    # ticket medio é o faturamento pela quantidade de produtos vendidos
+
+    ticket_medio = ticket_medio.to_frame()  # convertemos o ticket medio em uma tabela
+
+    display(ticket_medio)
 
 
