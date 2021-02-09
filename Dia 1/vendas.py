@@ -68,7 +68,19 @@ if __name__ == '__main__':
     tabela_completa = tabela_faturamento.join(tabela_quantidade_venda).join(ticket_medio)
     # juntamos todas as tabelas
 
-    display(tabela_completa)
+    lista_lojas = tabela_vendas["ID Loja"].unique()
+    # pegamos cada valor unico da coluna ID Loja
+
+    for loja in lista_lojas:
+        tabela_loja = tabela_vendas.loc[tabela_vendas["ID Loja"] == loja, ["ID Loja", "Quantidade", "Valor Final"]]
+        # definimos as linhas e colunas que queremos
+
+        tabela_loja = tabela_loja.groupby("ID Loja").sum()
+
+        tabela_loja["Ticket Medio"] = tabela_loja["Valor Final"] / tabela_loja["Quantidade"]
+        # Criamos a coluna Ticket Medio
+
+        enviar_email(loja, tabela_loja)
 
     enviar_email("Diretoria", tabela_faturamento)
 
