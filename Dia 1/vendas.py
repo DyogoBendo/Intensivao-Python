@@ -73,7 +73,7 @@ if __name__ == '__main__':
 
     for loja in lista_lojas:
         tabela_loja = tabela_vendas.loc[tabela_vendas["ID Loja"] == loja, ["ID Loja", "Quantidade", "Valor Final"]]
-        # definimos as linhas e colunas que queremos
+        #         # definimos as linhas e colunas que queremos
 
         tabela_loja = tabela_loja.groupby("ID Loja").sum()
 
