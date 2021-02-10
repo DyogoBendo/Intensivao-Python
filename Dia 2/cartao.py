@@ -13,10 +13,10 @@ if __name__ == '__main__':
     info_df = clients_df.info()
     # pegamos informações sobre a tabela, informando o tipo de cada coluna, e se possuem linhas vazias
 
-    display(info_df)
-
     clients_df = clients_df.dropna()
     # nós apagamos todas as linhas que possuem alguma célula vazia
 
-    info_df = clients_df.info()
-    display(info_df)
+    desc_clients = clients_df.describe()
+    # pegamos uma descrição da tabela, que nos informa aspectos estatísticos
+
+    display(desc_clients)
