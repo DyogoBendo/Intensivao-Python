@@ -10,13 +10,18 @@ if __name__ == '__main__':
     # apagamos uma coluna, chamada CLIENTNUM
     # a base original não é afetada
 
-    info_df = clients_df.info()
-    # pegamos informações sobre a tabela, informando o tipo de cada coluna, e se possuem linhas vazias
-
     clients_df = clients_df.dropna()
     # nós apagamos todas as linhas que possuem alguma célula vazia
 
     desc_clients = clients_df.describe()
     # pegamos uma descrição da tabela, que nos informa aspectos estatísticos
 
-    display(desc_clients)
+    clients_df_categoria = clients_df["Categoria"].value_counts()
+    # contamos o número de cada elemento presente na coluna categoria
+
+    display(clients_df_categoria)
+
+    clients_df_categoria_pct = clients_df["Categoria"].value_counts(normalize=True)
+    # pegamos agora o percentual de presença de cada elemento
+
+    display(clients_df_categoria_pct)
