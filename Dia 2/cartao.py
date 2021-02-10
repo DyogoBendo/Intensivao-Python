@@ -10,4 +10,13 @@ if __name__ == '__main__':
     # apagamos uma coluna, chamada CLIENTNUM
     # a base original não é afetada
 
-    display(clients_df)
+    info_df = clients_df.info()
+    # pegamos informações sobre a tabela, informando o tipo de cada coluna, e se possuem linhas vazias
+
+    display(info_df)
+
+    clients_df = clients_df.dropna()
+    # nós apagamos todas as linhas que possuem alguma célula vazia
+
+    info_df = clients_df.info()
+    display(info_df)
